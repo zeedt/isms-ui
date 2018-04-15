@@ -9,7 +9,7 @@ import {PerformanceComponent} from './performance/performance.component';
 
 const route : Routes = [
   {
-    path : 'app',
+    path : '',
     component : HomeComponent,
     canActivate : [AuthGuardService],
     children : [
@@ -23,6 +23,10 @@ const route : Routes = [
           },
           {
             path : "performance",
+            component : PerformanceComponent
+          },
+          {
+            path : "",
             component : PerformanceComponent
           }
         ]

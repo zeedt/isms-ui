@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {HashLocationStrategy, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { FirstloadComponent } from './firstload/firstload.component';
 import { PerformanceComponent } from './performance/performance.component';
+import {HttpClientModule} from '@angular/common/http';
+import {LoginService} from './services/loginservices/login.service';
 
 
 @NgModule({
@@ -22,22 +24,23 @@ import { PerformanceComponent } from './performance/performance.component';
     HomeComponent,
     DashboardComponent,
     FirstloadComponent,
-    PerformanceComponent,
+    PerformanceComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRouting,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path : 'login',
         component : LoginComponent
       },
-      { path: 'app', loadChildren: './routing-modules#AppRouting' },
+      { path: 'app', loadChildren: './routing-module#AppRouting' },
 
     ],{useHash : true})
   ],
-  providers: [GlobalService,AuthGuardService,{
+  providers: [GlobalService,AuthGuardService,LoginService,{
     provide: LocationStrategy,
     useClass: PathLocationStrategy,
   }],
