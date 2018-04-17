@@ -39,6 +39,9 @@ const route : Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(route),
+  ],
+  declarations : [
+    HomeComponent,FirstloadComponent,DashboardComponent,PerformanceComponent
   ]
 })
 
