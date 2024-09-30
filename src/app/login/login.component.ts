@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormControl,Validator} from '@angular/forms';
+import {FormGroup, FormControl, Validator, Validators} from '@angular/forms';
+import {GlobalService} from './../global.service'
+import {LoginService} from '../services/loginservices/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +13,25 @@ import {FormGroup,FormControl,Validator} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   formData;
-  constructor() { }
-
+  constructor(private globalServivce : GlobalService, public loginService:LoginService) { }
+  aa=99;
   ngOnInit() {
+
+    console.log("Global " + this.globalServivce.getLogin() );
+
     this.formData = new FormGroup({
-      email : new FormControl("Email"),
-      password : new FormControl()
+      username : new FormControl("",Validators.compose([
+        Validators.required, Validators.minLength(4)
+      ])),
+      password : new FormControl("",Validators.compose([
+        Validators.required, Validators.minLength(8)
+      ]))
     });
+  }
+
+  login(loginData:any) : void {
+    console.log("Form data is " + JSON.stringify(loginData));
+    this.loginService.authorizeUser(loginData);
   }
 
 }

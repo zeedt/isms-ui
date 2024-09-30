@@ -49,18 +49,17 @@
       </div>
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
         <div class="well no-padding">
-          <form [formGroup]='formData' id="login-form" class="smart-form client-form">
+          <form [formGroup]='formData' id="login-form" class="smart-form client-form" (ngSubmit)="login(formData.value)">
             <header>
               Sign In
             </header>
-
             <fieldset>
 
               <section>
-                <label class="label">E-mail</label>
+                <label class="label">Username</label>
                 <label class="input"> <i class="icon-append fa fa-user"></i>
-                  <input type="email" name="email" formControlName="email">
-                  <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b></label>
+                  <input type="username" name="username" formControlName="username">
+                  <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Enter your username</b></label>
               </section>
 
               <section>
@@ -80,7 +79,7 @@
               </section>
             </fieldset>
             <footer>
-              <input type="submit" class="btn btn-primary" value="sign in" />
+              <input type="submit" [disabled]="!formData.valid"  class="btn btn-primary" value="sign in" />
             </footer>
           </form>
 
@@ -148,36 +147,36 @@
   $(function() {
     // Validation
 
-    $("#login-form").validate({
-      // Rules for form validation
-      rules : {
-        email : {
-          required : true,
-          email : true
-        },
-        password : {
-          required : true,
-          minlength : 3,
-          maxlength : 20
-        }
-      },
-
-      // Messages for form validation
-      messages : {
-        email : {
-          required : 'Please enter your email address',
-          email : 'Please enter a VALID email address'
-        },
-        password : {
-          required : 'Please enter your password'
-        }
-      },
-
-      // Do not change code below
-      errorPlacement : function(error, element) {
-        error.insertAfter(element.parent());
-      }
-    });
+    // $("#login-form").validate({
+    //   // Rules for form validation
+    //   rules : {
+    //     email : {
+    //       required : true,
+    //       email : true
+    //     },
+    //     password : {
+    //       required : true,
+    //       minlength : 3,
+    //       maxlength : 20
+    //     }
+    //   },
+    //
+    //   // Messages for form validation
+    //   messages : {
+    //     email : {
+    //       required : 'Please enter your email address',
+    //       email : 'Please enter a VALID email address'
+    //     },
+    //     password : {
+    //       required : 'Please enter your password'
+    //     }
+    //   },
+    //
+    //   // Do not change code below
+    //   errorPlacement : function(error, element) {
+    //     error.insertAfter(element.parent());
+    //   }
+    // });
   });
 </script>
 
